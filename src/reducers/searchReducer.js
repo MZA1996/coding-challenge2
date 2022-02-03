@@ -1,13 +1,13 @@
-const initState = { username: "", result: { repos: "" }, loading: false };
+const initState = { username: "", result: { userInfo: "", repos: [] }, loading: false, error: '' };
 
 const searchReducer = (state=initState, action) => {
     switch(action.type){
         case 'LOADING':
             return { ...state, username: action.payload, loading: true };
         case 'LOAD_RESULT':
-            return { ...state, result: action.payload, loading: false, error: false };
+            return { ...state, repos: action.payload.userRepos, userInfo: action.payload.userInfo, loading: false, error: false };
         case 'SET_ERROR':
-            return { ...state, error: action.payload, loading: false };
+            return { ...state, error: action.payload, loading: false, username: '', repos: [], userInfo: '' };
         default:
             return state;
     };

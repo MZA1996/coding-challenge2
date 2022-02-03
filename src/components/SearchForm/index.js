@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getResult } from '../../actions/index';
 
-function SearchForm({ getResult }) {
-
-    const dispatch = useDispatch();
+function SearchForm({ getUser }) {
 
     const [ username, setUsername ] = useState("")
 
     const handleSubmit = e => {
         e.preventDefault();
-        // getResult(username);
-        dispatch(getResult(username));
-        setUsername(" ")
+        getUser(username);
+        setUsername("")
     }
 
     const updateInput = e => {
@@ -22,10 +17,11 @@ function SearchForm({ getResult }) {
 
 
     return (
-        <form aria-label="search" onSubmit={handleSubmit}>
+        <form aria-label="form" onSubmit={handleSubmit}>
             <label>Username:</label>
-            <input value={username} onChange={updateInput} type="text" />
-            <input type="submit" value="Search" />
+            <input value={username} id="username" name="username" placeholder="Search Github user" onChange={updateInput} type="text" />
+            <div></div>
+            <input type="submit" value="Get Info" />
         </form>
     );
 };

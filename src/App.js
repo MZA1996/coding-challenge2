@@ -1,15 +1,14 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Search } from './pages/index';
+import GitHubInfo from './components/GitHubInfo';
+import SearchUser from './components/searchUser';
 
 function App() {
     return (
-        <div id="app">
-            <main>
-              <Routes>
-                <Route path="/" element={<Search />}/>
-              </Routes>
-            </main>
+        <div className="App">
+            <h1>Welcome to GitHub search</h1>
+            <SearchUser />
+            <GitHubInfo />
         </div>
     )
 }
