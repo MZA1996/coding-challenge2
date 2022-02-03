@@ -1,5 +1,7 @@
 import React from 'react';
-import Repos from '../Result/index';
+import Repo from '../Repo';
+import Repos from '../Repos/index';
+import User from '../User';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -15,13 +17,13 @@ const GitHubInfo = () => {
 
     return (
         <section id='githubinfo'>
-            {error ? <p>Oops there's been an error! {error}</p> :
+            { error ? <p>Oops there's been an error! {error}</p> :
                 <div>
                     {/* <User login={login}/> */}
                     <Repos handleRepoSelect={handleRepoSelect} />
-                    {/* <Repo id={selectedRepo}/> */}
-                    </div>
-                    }
+                    <Repo id={selectedRepo}/>
+                </div>
+            }
         </section>
     );
 };

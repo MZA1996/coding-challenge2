@@ -1,14 +1,14 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
 import GitHubInfo from './components/GitHubInfo';
-import SearchUser from './components/searchUser';
+import SearchUser from './components/SearchUser';
 
 function App() {
+    const login='Ginger9307'
+
     return (
         <div className="App">
             <h1>Welcome to GitHub search</h1>
             <SearchUser />
-            <GitHubInfo />
+            <GitHubInfo login={login}/>
         </div>
     )
 }

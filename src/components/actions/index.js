@@ -1,21 +1,22 @@
 import axios from 'axios';
 
-const loading = username => ({ type: 'LOADING', payload: username });
+// arrow function that performs the dispatch
+const loading = username => ({ type: 'SEARCH'/*'LOADING'*/, payload: username });
 
-const uploadSearch = ({ userRepos, userInfo }) => ({ 
+const uploadSearch = (userRepos, userInfo) => ({ 
     type: 'LOAD_SEARCH',
     payload: { userRepos: userRepos, userInfo: userInfo } 
 });
 
-export const getUser = searchTerm => {
+const getUser = searchTerm => {
     return async dispatch => {
         dispatch(loading(searchTerm));
         try {
             const userRepos = await fetchUserRepos(searchTerm);
             const userInfo = await fetchUser(searchTerm);
-            dispatch(uploadSearch(userRepos, userInfo))
+            dispatch(uploadSearch(userRepos, userInfo));
         } catch (err) {
-            console.warn(err.message);
+            console.warn(err/*.message*/);
             dispatch({ type: 'SET_ERROR', payload: err.message })
         };
     };
@@ -28,15 +29,17 @@ const fetchUserRepos = async searchTerm => {
         const { data } = await axios.get(`https://api.github.com/users/${searchTerm}/repos`);
         return data;
     } catch(err) {
-        throw new Error(err)
+        throw new Error(err);
     }
-}
+};
 
 const fetchUser = async searchTerm => {
     try {
-        const { data } = await axios.get(`https://api.github.com/users/${searchTerm}`);
+        const { data, response } = await axios.get(`https://api.github.com/users/${searchTerm}`);
         return data;
     } catch(err) {
         throw new Error(err)
     }
-}
+};
+
+export default getUser;

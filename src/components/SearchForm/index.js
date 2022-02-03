@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Button, TextField } from '@mui/material'
 
 function SearchForm({ getUser }) {
 
@@ -19,9 +20,11 @@ function SearchForm({ getUser }) {
     return (
         <form aria-label="form" onSubmit={handleSubmit}>
             <label>Username:</label>
-            <input value={username} id="username" name="username" placeholder="Search Github user" onChange={updateInput} type="text" />
+            {/* <input value={username} id="username" name="username" placeholder="Search GitHub user" onChange={updateInput} type="text" /> */}
+            <TextField value={username} id="username" label="Username" onChange={updateInput} type="search" />
             <div></div>
-            <input type="submit" value="Get Info" />
+            <Button variant="outlined" type="submit">Get info</Button>
+            {/* <input type="submit" value="Get Info" /> */}
         </form>
     );
 };
